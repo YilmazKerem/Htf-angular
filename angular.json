@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-htf"
+    }
+  },
+  "defaultProject": "angular-htf",
+  "cli": {
+    "analytics": false
+  }
 }
