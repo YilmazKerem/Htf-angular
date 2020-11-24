@@ -17,6 +17,18 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { AccordionModule } from 'primeng/accordion';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { MenuItem } from 'primeng/api';
+import { TableModule } from 'primeng/table';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { FormsModule } from '@angular/forms';
+
+
+
 
 
 
@@ -27,7 +39,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     DatagridComponent,
     MapComponent,
     ErrorsComponent,
-    ErrorsListComponent
+    ErrorsListComponent,
+    NavBarComponent
   ],
 
   imports: [
@@ -37,7 +50,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BrowserAnimationsModule,
     MatSliderModule,
     MatSortModule,
-    MatInputModule,
+    MatInputModule, AccordionModule, TabMenuModule, TableModule, CardModule, InputTextModule, ButtonModule, FormsModule,
     MatFormFieldModule
   ],
   providers: [],

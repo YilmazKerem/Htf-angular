@@ -1,0 +1,14 @@
+button{
+    margin-left: 10px;
+    margin-bottom:10px;
+}
+
+.flex-container {
+    display: flex;
+  }
+
+  .flex-container > div {
+    margin-left: 250px;
+    padding: 10px;
+    font-size: 10px;
+  }

@@ -34,12 +34,9 @@ export class MapComponent implements OnInit, AfterViewInit
       this.data = res.data;
 
       for (let index = 0; index < this.data.length; index++) {
-        // console.log(this.data[index].location.lat);
         this.showMarker(this.data[index].location.lat, this.data[index].location.lng, this.data[index].name, this.data[index].inIsolation);
 
       }
-
-      // console.log(this.data.length);
 
     });
 
@@ -56,16 +53,26 @@ export class MapComponent implements OnInit, AfterViewInit
   {
     // var lat = 51;
     // var lng = 1;
+    var Icon;
 
-    var Icon = L.icon({
-      iconUrl: 'assets/icon/pin.png',
-      iconSize: [20, 20], // size of the icon
-      //iconAnchor: [10, 20], // point of the icon which will correspond to marker's location
-    });
+    if (isolatie == true) {
+      Icon = L.icon({
+        iconUrl: 'assets/icon/pin.png',
+        iconSize: [20, 20],
+      });
+    }
+    else {
+      Icon = L.icon({
+        iconUrl: 'assets/icon/pin-green.png',
+        iconSize: [20, 20],
+      });
+    }
+
+
 
     var popup = L.popup()
       .setLatLng([lat, lng])
-      .setContent(`<p>Naam: ${ data }</p><p>In isolatie: ${ isolatie }</p>  <button (click)="test()">Zet in Isolatie</button>`)
+      .setContent(`<p>Naam: ${ data }</p><p>In isolatie: ${ isolatie }</p> <div>  </div> `)// <button onclick='this.test()'>Zet in Isolatie</button>
       .openOn(this.mapp);
 
     L.marker([lat, lng], { icon: Icon }).addTo(this.mapp).bindPopup(popup).closePopup();
@@ -87,12 +94,15 @@ export class MapComponent implements OnInit, AfterViewInit
       zoom: 4
     };
 
+    if (initialState.zoom < 1) {
+      initialState.zoom = 1;
+    }
+
     this.mapp = new L.Map(this.mapContainer.nativeElement).setView(
       [initialState.lat, initialState.lng],
       initialState.zoom
     );
 
-    // the attribution is required for the Geoapify Free tariff plan
     this.mapp.attributionControl
       .setPrefix("")
       .addAttribution(

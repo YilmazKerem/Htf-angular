@@ -12,7 +12,8 @@ export class ErrorsListComponent implements OnInit
 
   id: number;
   data: any;
-  meta: any;
+  meta = null;
+  page: number = 1;
 
   constructor(private router: Router, private route: ActivatedRoute, private svc: HtfServiceService) { }
 
@@ -26,7 +27,29 @@ export class ErrorsListComponent implements OnInit
 
     });
 
-    this.svc.GetErrorById(this.id).subscribe((res) =>
+    this.GetErrors();
+
+
+    console.log(this.id);
+  }
+
+  ChangePage(page: number)
+  {
+    this.page += page;
+    if (this.page > this.meta.total_pages) {
+      this.page = this.meta.total_pages;
+    }
+    if (this.page < 1) {
+      this.page = 1;
+    }
+    this.GetErrors();
+
+
+  }
+
+  GetErrors()
+  {
+    this.svc.GetErrorById2(this.id, this.page).subscribe((res) =>
     {
       // console.log(res);
       //@ts-ignore
@@ -38,9 +61,12 @@ export class ErrorsListComponent implements OnInit
 
       // this.DatacentreError.push(res.meta);
     });
-    console.log(this.id);
-    // await this.GetOwner();
-    // console.log(this.HuidigeOwner);
+  }
+
+  Isolation()
+  {
+
+    this.svc.SetIsolation(this.id).subscribe(() => { });
   }
 
 }

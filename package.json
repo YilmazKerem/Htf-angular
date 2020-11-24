@@ -26,6 +26,8 @@
     "leaflet": "^1.7.1",
     "mapbox-gl": "^1.13.0",
     "mapbox-gl-leaflet": "0.0.13",
+    "primeicons": "^4.1.0",
+    "primeng": "^11.0.0-rc.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LocalStorageManager } from '../LocalStorage/LocalStorageManager';
 
 
 
@@ -13,10 +14,13 @@ export class HtfServiceService
   password: string = "Rv4Bn6b4";
   apiURL: string = "https://htf2020.zinderlabs.com";
 
-  token: string = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9odGYyMDIwLnppbmRlcmxhYnMuY29tXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjA2MjE1MDM2LCJleHAiOjE2MDYzOTUwMzYsIm5iZiI6MTYwNjIxNTAzNiwianRpIjoiYW1XbGpmRmJFUWpSelhPMyIsInN1YiI6NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.YaG6g5EVDmlK4Kdh511adRWyil10EylY0F0_gOWAQ30";
+  token: string = "";
   Auth: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient)
+  {
+    this.token = LocalStorageManager.GetJWT();
+  }
 
   GetToken()
   {
@@ -25,6 +29,11 @@ export class HtfServiceService
       "password": this.password
     };
     return this.http.post(`${ this.apiURL }/api/auth/login`, options);
+  }
+
+  LoginToken(data)
+  {
+    return this.http.post(`${ this.apiURL }/api/auth/login`, data);
   }
 
   GetDataCenters()
@@ -49,8 +58,36 @@ export class HtfServiceService
         'Content-Type': 'application/json'
       })
     };
-    return this.http.get(`${ this.apiURL }/api/datacenters/${ id }/errors?page=2`, this.Auth);
+    return this.http.get(`${ this.apiURL }/api/datacenters/${ id }/errors?page=2`, this.Auth).toPromise();
 
   }
 
+  GetErrorById2(id, page: number)
+  {
+
+    this.Auth = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + this.token,
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.get(`${ this.apiURL }/api/datacenters/${ id }/errors?page=${ page }`, this.Auth);
+
+  }
+
+  SetIsolation(id)
+  {
+
+    console.log(id);
+    console.log(this.token);
+
+    this.Auth = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + this.token,
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post(`${ this.apiURL }/api/datacenters/${ id }/isolate`, "", this.Auth);
+
+  }
 }

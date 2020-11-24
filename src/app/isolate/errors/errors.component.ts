@@ -15,27 +15,32 @@ export class ErrorsComponent implements OnInit
   DatacentreError = [];
   GetDataCenters()
   {
-    // this.svc.GetDataCenters().subscribe((res) =>
-    // {
-    //   //console.log(res);
+    this.svc.GetDataCenters().subscribe((res) =>
+    {
 
-    //   //@ts-ignore
-    //   this.data = res.data;
-    //   this.data.forEach(element =>
-    //   {
-    //     //console.log(element.id);
+      //@ts-ignore
+      console.log('xxx', res.data);
 
-    //     //this.DatacentreError.push(this.svc.GetErrorById(element.id));
-    //     //console.log(this.svc.GetErrorById(element.id));
-    //     this.svc.GetErrorById(element.id).subscribe((res) =>
-    //     {
-    //       //@ts-ignore
-    //       this.DatacentreError.push(res.meta);
-    //     });
+      //@ts-ignore
+      this.data = res.data;
+      this.data.forEach(async element =>
+      {
 
-    //   });
-    // });
-    // console.log(this.DatacentreError);
+        //this.DatacentreError.push(this.svc.GetErrorById(element.id));
+        //console.log(this.svc.GetErrorById(element.id));
+        await this.svc.GetErrorById(element.id).then(async (res) =>
+        {
+          //@ts-ignore
+          this.DatacentreError.push(res.meta);
+          //@ts-ignore
+          console.log(res.meta);
+
+        });
+        setTimeout(() => { }, 10);
+
+      });
+    });
+    console.log(this.DatacentreError);
 
   }
 
@@ -44,4 +49,9 @@ export class ErrorsComponent implements OnInit
     //this.GetDataCenters();
   }
 
+
+  SetIsolation(index)
+  {
+    this.svc.SetIsolation(index).subscribe();
+  }
 }

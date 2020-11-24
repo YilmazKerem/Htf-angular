@@ -1,4 +1,4 @@
-<button (click)="Login()">
+<!-- <button (click)="Login()">
 
   Login
 
@@ -9,19 +9,30 @@
 
   DataCenters
 
-</button>
+</button> -->
+<br>
+<p-card [style]="{'width' : '400px', 'margin' :'auto'}" *ngIf='!Loggedin'>
+  <p-header>
+    <h2>Login</h2>
+  </p-header>
 
+  <div>
+    <form id="form" #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm.value)">
+      <span class="p-float-label">
+        <input ngModel #username="ngModel" name="username" id="float-input" type="text" pInputText>
+        <label for="float-input">Username</label>
+      </span>
+      <br><br>
+      <span class="p-float-label">
+        <input ngModel #password="ngModel" name="password" id="float-input" type="password" pInputText>
+        <label for="float-input">Password</label>
+      </span>
+      <br>
+      <p-button type="submit" label="Click"></p-button>
+    </form>
+  </div>
+</p-card>
 
-<div>
-  <form class="">
-    <mat-form-field class="example-full-width">
-      <mat-label>Username</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
-      <mat-label>password</mat-label>
-      <input matInput type="password">
-    </mat-form-field>
-  </form>
-</div>
+<p-card *ngIf='Loggedin'>
+  <H1>You are logged in</H1>
+</p-card>

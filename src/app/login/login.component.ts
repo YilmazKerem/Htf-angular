@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Local } from 'protractor/built/driverProviders';
+import { stringify } from 'querystring';
+import { LocalStorageManager } from '../LocalStorage/LocalStorageManager';
 import { HtfServiceService } from '../Services/htf-service.service';
 
 @Component({
@@ -11,24 +14,28 @@ export class LoginComponent implements OnInit
 
   constructor(private svc: HtfServiceService) { }
 
-  Login()
+  Loggedin = false;
+  onSubmit(event)
   {
-    this.svc.GetToken().subscribe((jwt) =>
+    this.svc.LoginToken(event).subscribe((data) =>
     {
-      console.log(jwt);
+      //@ts-ignore
+      LocalStorageManager.SetJWT(data.access_token);
+      location.reload();
     });
-  }
 
-  GetDataCenters()
-  {
-    this.svc.GetDataCenters().subscribe((res) =>
-    {
-      console.log(res);
-    });
   }
-
   ngOnInit(): void
   {
+    if (LocalStorageManager.GetJWT() != "") {
+      this.Loggedin = true;
+      console.log(LocalStorageManager.GetJWT());
+
+    }
+    else {
+      console.log(LocalStorageManager.GetJWT());
+      this.Loggedin = false;
+    }
   }
 
 }

@@ -1,24 +1,25 @@
-<p>errors works!</p>
-<button (click)="GetDataCenters()">getData</button>
+<p-button (click)="GetDataCenters()">getData</p-button>
 
 <div *ngIf="data != null">
-  <table style="width:100%">
-    <tr>
-      <th>id</th>
-      <th>name</th>
-      <th>provider</th>
-      <th>inIsolation</th>
-      <th>lat</th>
-      <th>lot</th>
-    </tr>
-    <tr *ngFor='let item of DatacentreError ; let i = index'>
-      <td>{{i}}</td>
-      <!-- <td>{{data[i].id}}</td>
-    <td>{{item.name}}</td>
-    <td>{{item.provider}}</td>
-    <td>{{item.inIsolation}}</td>
-    <td>{{item.location.lat}}</td>
-    <td>{{item.location.lng}}</td> -->
-    </tr>
-  </table>
+  <p-table [value]="DatacentreError">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>Totaal errors</th>
+        <th>Isolation</th>
+      </tr>
+    </ng-template>
+    <!-- DatacentreError -->
+    <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+      <tr>
+        <td>{{data[rowIndex].id}}</td>
+        <td>{{data[rowIndex].name}}</td>
+        <td>{{item.pagination.total}}</td>
+        <td>
+          <p-button (click)="SetIsolation(data[rowIndex].id)">Isolation</p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>
