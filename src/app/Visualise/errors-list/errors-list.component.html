@@ -1,0 +1,20 @@
+<H1 *ngIf="meta">Aantal Errors: {{meta.total}}</H1>
+
+<table matSort style="width:100%">
+  <tr>
+    <th mat-sort-header="id">id</th>
+    <th mat-sort-header="Error Type ID">Error Type ID</th>
+    <th mat-sort-header="Datacenter ID">Error Type Label</th>
+    <th mat-sort-header="Error Type Label">Error Type Label</th>
+    <th mat-sort-header="Created At">Created</th>
+
+  </tr>
+
+  <tr *ngFor='let item of data; let i=index;'>
+    <td>{{item.id}}</td>
+    <td>{{item.errorTypeId}}</td>
+    <td>{{item.datacenterId}}</td>
+    <td>{{item.errorTypeLabel}}</td>
+    <td>{{item.createdAt}}</td>
+  </tr>
+</table>

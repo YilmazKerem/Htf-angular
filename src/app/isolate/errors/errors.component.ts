@@ -11,34 +11,37 @@ export class ErrorsComponent implements OnInit
 
   constructor(private svc: HtfServiceService) { }
 
-  data;
+  data = null;
   DatacentreError = [];
   GetDataCenters()
   {
-    this.svc.GetDataCenters().subscribe((res) =>
-    {
-      //console.log(res);
+    // this.svc.GetDataCenters().subscribe((res) =>
+    // {
+    //   //console.log(res);
 
-      //@ts-ignore
-      this.data = res.data;
-      this.data.forEach(element =>
-      {
-        console.log(element.id);
+    //   //@ts-ignore
+    //   this.data = res.data;
+    //   this.data.forEach(element =>
+    //   {
+    //     //console.log(element.id);
 
-        //this.DatacentreError.push(this.svc.GetErrorById(element.id));
-        console.log(this.svc.GetErrorById(element.id));
+    //     //this.DatacentreError.push(this.svc.GetErrorById(element.id));
+    //     //console.log(this.svc.GetErrorById(element.id));
+    //     this.svc.GetErrorById(element.id).subscribe((res) =>
+    //     {
+    //       //@ts-ignore
+    //       this.DatacentreError.push(res.meta);
+    //     });
 
-
-      });
-      //console.log(this.DatacentreError);
-
-    });
+    //   });
+    // });
+    // console.log(this.DatacentreError);
 
   }
 
   ngOnInit(): void
   {
-    this.GetDataCenters();
+    //this.GetDataCenters();
   }
 
 }

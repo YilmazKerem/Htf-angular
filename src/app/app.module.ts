@@ -10,6 +10,14 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { DatagridComponent } from './Visualise/datagrid/datagrid.component';
 import { MapComponent } from './Visualise/map/map.component';
 import { ErrorsComponent } from './isolate/errors/errors.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ErrorsListComponent } from './Visualise/errors-list/errors-list.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+
 
 
 @NgModule({
@@ -18,13 +26,19 @@ import { ErrorsComponent } from './isolate/errors/errors.component';
     LoginComponent,
     DatagridComponent,
     MapComponent,
-    ErrorsComponent
+    ErrorsComponent,
+    ErrorsListComponent
   ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

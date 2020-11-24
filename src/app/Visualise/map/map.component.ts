@@ -35,7 +35,7 @@ export class MapComponent implements OnInit, AfterViewInit
 
       for (let index = 0; index < this.data.length; index++) {
         // console.log(this.data[index].location.lat);
-        this.showMarker(this.data[index].location.lat, this.data[index].location.lng, this.data[index].name);
+        this.showMarker(this.data[index].location.lat, this.data[index].location.lng, this.data[index].name, this.data[index].inIsolation);
 
       }
 
@@ -47,8 +47,12 @@ export class MapComponent implements OnInit, AfterViewInit
 
 
   }
+  test()
+  {
+    console.log("lmfao");
+  }
 
-  showMarker(lat: number, lng: number, data: string)
+  showMarker(lat: number, lng: number, data: string, isolatie: any)
   {
     // var lat = 51;
     // var lng = 1;
@@ -61,7 +65,7 @@ export class MapComponent implements OnInit, AfterViewInit
 
     var popup = L.popup()
       .setLatLng([lat, lng])
-      .setContent(`<p>Naam: ${ data }</p>  <button>Button</button>`)
+      .setContent(`<p>Naam: ${ data }</p><p>In isolatie: ${ isolatie }</p>  <button (click)="test()">Zet in Isolatie</button>`)
       .openOn(this.mapp);
 
     L.marker([lat, lng], { icon: Icon }).addTo(this.mapp).bindPopup(popup).closePopup();

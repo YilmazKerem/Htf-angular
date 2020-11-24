@@ -13,7 +13,7 @@ export class HtfServiceService
   password: string = "Rv4Bn6b4";
   apiURL: string = "https://htf2020.zinderlabs.com";
 
-  token: string = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9odGYyMDIwLnppbmRlcmxhYnMuY29tXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjA2MjA5NTcwLCJleHAiOjE2MDYzODk1NzAsIm5iZiI6MTYwNjIwOTU3MCwianRpIjoiMVB0TzlkQ3BFUkdOV0ZMTSIsInN1YiI6NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.ABGll66rc95XgwyGOTWaSEleE-HbG--f9SpajOzq42w";
+  token: string = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9odGYyMDIwLnppbmRlcmxhYnMuY29tXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjA2MjE1MDM2LCJleHAiOjE2MDYzOTUwMzYsIm5iZiI6MTYwNjIxNTAzNiwianRpIjoiYW1XbGpmRmJFUWpSelhPMyIsInN1YiI6NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.YaG6g5EVDmlK4Kdh511adRWyil10EylY0F0_gOWAQ30";
   Auth: any;
 
   constructor(private http: HttpClient) { }
@@ -49,9 +49,8 @@ export class HtfServiceService
         'Content-Type': 'application/json'
       })
     };
-    return this.http.get(`${ this.apiURL }/api/datacenters/${ id }/errors`, this.Auth);
+    return this.http.get(`${ this.apiURL }/api/datacenters/${ id }/errors?page=2`, this.Auth);
 
   }
-
 
 }

@@ -1,18 +1,17 @@
-<table style="width:100%">
+<table matSort style="width:100%">
   <tr>
-    <th>id</th>
-    <th>name</th>
-    <th>provider</th>
-    <th>inIsolation</th>
-    <th>lat</th>
-    <th>lot</th>
+    <th mat-sort-header="id">id</th>
+    <th mat-sort-header="name">name</th>
+    <th mat-sort-header="provider">provider</th>
+    <th mat-sort-header="inIsolation">inIsolation</th>
+
   </tr>
-  <tr *ngFor='let item of data'>
+
+  <tr *ngFor='let item of data; let i=index;'>
     <td>{{item.id}}</td>
     <td>{{item.name}}</td>
     <td>{{item.provider}}</td>
     <td>{{item.inIsolation}}</td>
-    <td>{{item.location.lat}}</td>
-    <td>{{item.location.lng}}</td>
+    <button (click)="GoToErrorList( item.id )">Detail</button>
   </tr>
 </table>

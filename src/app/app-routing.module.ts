@@ -4,12 +4,16 @@ import { ErrorsComponent } from './isolate/errors/errors.component';
 import { LoginComponent } from './login/login.component';
 import { DatagridComponent } from './Visualise/datagrid/datagrid.component';
 import { MapComponent } from './Visualise/map/map.component';
+import { ErrorsListComponent } from './Visualise/errors-list/errors-list.component';
+
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'datagrid', component: DatagridComponent },
   { path: 'map', component: MapComponent },
   { path: 'errors', component: ErrorsComponent },
+  { path: 'errors-list', component: ErrorsListComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 
 ];
